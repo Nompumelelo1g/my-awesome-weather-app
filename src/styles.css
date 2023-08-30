@@ -1,0 +1,49 @@
+#body {
+    border: 2px solid #ccc;
+    padding: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: rgb(176, 183, 204);
+
+}
+
+#main-temp {
+    font-size: 50px;
+}
+
+#get-value-input {
+    width: 300px;
+    padding: 10px;
+    margin: 10px auto;
+    border-radius: 4px;
+    font-size: 17px;
+    background-color: beige;
+
+}
+
+#search-form input[type="submit"] {
+    width: 100px;
+    padding: 10px;
+    cursor: pointer;
+    color: white;
+    background: rgb(20, 136, 204);
+    border-radius: 4px;
+    transition: all 250ms ease-in-out;
+}
+
+#search-form input[type="submit"]:hover {
+    background-color: rgb(121, 121, 241);
+}
+
+#button {
+    width: 200px;
+    padding: 10px;
+    margin: 10px auto;
+    border-radius: 7px;
+    color: white;
+    background-color: rgb(20, 136, 204);
+    transition: all 250ms ease-in-out;
+}
+
+#button:hover {
+    background-color: rgb(121, 121, 241);
+}

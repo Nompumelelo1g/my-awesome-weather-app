@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="src/styles.css" />
+    
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="container" id="body">
+        <div class="row">
+            <div class="col" id="form-container">
+                <form id="search-form">
+                    <input
+                        type="text"
+                        placeholder="enter city"
+                        id="get-value-input"
+                        autofocus="on"
+                    />
+                    <input type="submit" value="search" />
+                </form>
+            </div>
+            <div class="col" id="current-location">
+                <button id="button">
+                    current city
+                </button>
+            </div>
+        </div>
+      <div class="currentCity">
+        <h1 id="mainCity">JOHANNESBURG</h1>
+        <p>
+          <span id="day"> Monday 18:00</span><br />
+          <span id="condition"> clear </span>
+        </p>
+        <p id="temperature-details">
+            <div class="row">
+                <div class="col" id="temperature">
+                    <span id="main-temp">18 °C</span> 
+                </div>
+                <div class="col" id="more-details-temp">
+                    <li id="humidity"> 
+                        Humidity: 4%
+                    </li>
+                    <li id="wind">
+                        Wind: 3km/h
+                    </li>
+                </div>
+            </div>
+        </p>
+      </div>
+    </div>
+    <script src="src/script.js"></script>
+  </body>
+</html>
