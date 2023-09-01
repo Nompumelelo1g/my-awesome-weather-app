@@ -1,9 +1,9 @@
-#body {
-    border: 2px solid #ccc;
+.container {
+    display: block;
+    margin: 0 auto;
+    border: 2px solid #333;
     padding: 20px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background-color: rgb(176, 183, 204);
-
+    text-align: center;
 }
 
 #main-temp {
@@ -48,7 +48,6 @@
     background-color: rgb(121, 121, 241);
 }
 .centered {
-    text-align: left;
-    margin-left: 265px;
+    text-align: center;
     margin-top: 15px;
 }

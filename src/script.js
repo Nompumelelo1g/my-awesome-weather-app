@@ -13,17 +13,16 @@ function updateTimeAndDay() {
   let day = days[currentDate.getDay()];
 
   let currentDay = document.querySelector("#day");
-  currentDay.innerHTML = `${day} ${hours}:${minutes}`;
+  currentDay.innerHTML = `Last updated: ${day} ${hours}:${minutes}`;
 }
 
 //changing cities with api
 function changingCities(event){
   event.preventDefault();
-
   let gettingInput = document.querySelector("#get-value-input");
   let city = gettingInput.value; // Get the city name from user input
-  let apiKey = "6d68aadfacdd4f5163bc273049a0cf2d";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  let apiKey = "537o90e3d0b69f65872t8af09d46def0";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   updateTimeAndDay();
 
   axios.get(apiUrl).then(getWeatherDetails);
@@ -37,6 +36,7 @@ searchForm.addEventListener("submit", changingCities);
 
 
 function getWeatherDetails(response){
+  console.log(response)
     let temperature = Math.round(response.data.main.temp);
     let humidity = response.data.main.humidity;
     let windSpeed = response.data.wind.speed;
@@ -59,44 +59,44 @@ function getWeatherDetails(response){
 }
 
 //using button for current city
-function showPosition(position){
-    let latitude=position.coords.latitude; 
-    let longitude = position.coords.longitude;
-    let apiKey = "6d68aadfacdd4f5163bc273049a0cf2d";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+// function showPosition(position){
+//     let latitude=position.coords.latitude; 
+//     let longitude = position.coords.longitude;
+//     let apiKey = "6d68aadfacdd4f5163bc273049a0cf2d";
+//     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
 
-    axios.get(apiUrl)
-    .then(function(response) {
-      let temperature = Math.round(response.data.main.temp);
-      let humidity = response.data.main.humidity;
-      let windSpeed = response.data.wind.speed;
-      let weatherDescription = response.data.weather[0].description;
-      let city = response.data.name.toUpperCase();
+//     axios.get(apiUrl)
+//     .then(function(response) {
+//       let temperature = Math.round(response.data.main.temp);
+//       let humidity = response.data.main.humidity;
+//       let windSpeed = response.data.wind.speed;
+//       let weatherDescription = response.data.weather[0].description;
+//       let city = response.data.name.toUpperCase();
 
 
-    //updating on html
-    let cityElement = document.querySelector("#mainCity");
-    cityElement.innerHTML = city;
-    let temperatureElement = document.querySelector("#main-temp");
-    temperatureElement.innerHTML = `${temperature}°C`;
+//     //updating on html
+//     let cityElement = document.querySelector("#mainCity");
+//     cityElement.innerHTML = city;
+//     let temperatureElement = document.querySelector("#main-temp");
+//     temperatureElement.innerHTML = `${temperature}°C`;
 
-    let humidityElement = document.querySelector("#humidity");
-    humidityElement.innerHTML = `Humidity: ${humidity}%`;
+//     let humidityElement = document.querySelector("#humidity");
+//     humidityElement.innerHTML = `Humidity: ${humidity}%`;
 
-    let windElement = document.querySelector("#wind");
-    windElement.innerHTML = `Wind Speed: ${windSpeed} km/h`;
+//     let windElement = document.querySelector("#wind");
+//     windElement.innerHTML = `Wind Speed: ${windSpeed} km/h`;
 
-    let weatherDescriptionElement = document.querySelector("#condition");
-    weatherDescriptionElement.innerHTML = `Weather: ${weatherDescription}`;
-    updateTimeAndDay();
-    })
+//     let weatherDescriptionElement = document.querySelector("#condition");
+//     weatherDescriptionElement.innerHTML = `Weather: ${weatherDescription}`;
+//     updateTimeAndDay();
+//     })
 
-}
-function getCurrentPos(){
-    navigator.geolocation.getCurrentPosition(showPosition);//getting the actual position
-}
+// }
+// function getCurrentPos(){
+//     navigator.geolocation.getCurrentPosition(showPosition);//getting the actual position
+// }
 
-let currentLocationButton = document.querySelector("button");
-currentLocationButton.addEventListener("click",getCurrentPos);
+// let currentLocationButton = document.querySelector("button");
+// currentLocationButton.addEventListener("click",getCurrentPos);
 
 
