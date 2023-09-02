@@ -14,7 +14,11 @@ function updateTimeAndDay() {
 
   let currentDay = document.querySelector("#day");
   currentDay.innerHTML = `Last updated: ${day} ${hours}:${minutes}`;
+
+  
 }
+
+
 
 //changing cities with api
 function changingCities(event){
@@ -25,9 +29,9 @@ function changingCities(event){
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   
   updateTimeAndDay();
-  
-
   axios.get(apiUrl).then(getWeatherDetails);
+   
+
 
   let cities = document.querySelector("#mainCity");
   cities.innerHTML = city.toUpperCase();
@@ -45,7 +49,14 @@ function getWeatherDetails(response){
   let windSpeed = response.data.wind.speed;
   let weatherDescription = response.data.condition.description;
   let weatherIcon = response.data.condition.icon_url;
-  
+
+
+  let currentDate = new Date();
+  let cityTimeZoneOffset = response.data.timezone_offset; // Time zone offset in seconds
+  let cityLocalTime = new Date(currentDate.getTime() + cityTimeZoneOffset * 1000);
+
+  let timeForCityElement = document.querySelector("#time-for-city");
+  timeForCityElement.innerHTML = `Local Time: ${cityLocalTime.toLocaleTimeString()}`;
 
   let temperatureElement = document.querySelector("#main-temp");
   temperatureElement.innerHTML = `${temperature}°C`;
