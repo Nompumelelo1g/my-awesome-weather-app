@@ -12,8 +12,6 @@ function updateTimeAndDay(timestamp) {
   let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   let day = days[currentDate.getDay()];
 
-  // let currentDay = document.querySelector("#day");
-  // currentDay.innerHTML = `Last updated: ${day} ${hours}:${minutes}`;
   return `${day} ${hours}:${minutes}`;
 
 }
@@ -25,7 +23,6 @@ function dateAndTimeFormat(timestamp){
   return days[day];
 
 }
-
 
 //changing cities with api
 function changingCities(event){
@@ -89,6 +86,7 @@ function showPosition(position){
       let weatherDescription = response.data.condition.description;
       let city = response.data.city.toUpperCase();
       let weatherIcon = response.data.condition.icon_url;
+      let dateFormat = updateTimeAndDay(response.data.time*1000);
 
 
     //updating on html
@@ -108,6 +106,9 @@ function showPosition(position){
 
     let weatherIconElement = document.querySelector("#weather-icon");
     weatherIconElement.src = weatherIcon;//for changing the src link of the icon
+
+    let dateFormatElement = document.querySelector("#day");
+    dateFormatElement.innerHTML =`Last updated: ${dateFormat}`;
     })
 
 }
