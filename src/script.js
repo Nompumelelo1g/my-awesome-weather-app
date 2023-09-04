@@ -34,7 +34,6 @@ function changingCities(event){
   let city = gettingInput.value; // Get the city name from user input
   let apiKey = "537o90e3d0b69f65872t8af09d46def0";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-  dateAndTimeFormat();
 
   axios.get(apiUrl).then(getWeatherDetails);
   
@@ -53,6 +52,7 @@ function getWeatherDetails(response){
   let windSpeed = response.data.wind.speed;
   let weatherDescription = response.data.condition.description;
   let weatherIcon = response.data.condition.icon_url;
+  let dateFormat = updateTimeAndDay(response.data.time*1000);
 
   let temperatureElement = document.querySelector("#main-temp");
   temperatureElement.innerHTML = `${temperature}°C`;
@@ -68,6 +68,9 @@ function getWeatherDetails(response){
 
   let weatherIconElement = document.querySelector("#weather-icon");
   weatherIconElement.src = weatherIcon;
+
+  let dateFormatElement = document.querySelector("#day");
+  dateFormatElement.innerHTML =`Last updated: ${dateFormat}`;
 
 }
 
