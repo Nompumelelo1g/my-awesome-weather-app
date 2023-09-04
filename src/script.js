@@ -1,6 +1,6 @@
 // getting the date and time
-function updateTimeAndDay() {
-  let currentDate = new Date();
+function updateTimeAndDay(timestamp) {
+  let currentDate = new Date(timestamp);
   let hours = currentDate.getHours();
   if (hours < 10) {
     hours = `0${hours}`;
@@ -12,12 +12,19 @@ function updateTimeAndDay() {
   let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   let day = days[currentDate.getDay()];
 
-  let currentDay = document.querySelector("#day");
-  currentDay.innerHTML = `Last updated: ${day} ${hours}:${minutes}`;
+  // let currentDay = document.querySelector("#day");
+  // currentDay.innerHTML = `Last updated: ${day} ${hours}:${minutes}`;
+  return `${day} ${hours}:${minutes}`;
 
-  
 }
 
+function dateAndTimeFormat(timestamp){
+  let currentDate = new Date(timestamp * 1000);
+  let day = currentDate.getDay();
+  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  return days[day];
+
+}
 
 
 //changing cities with api
@@ -27,12 +34,10 @@ function changingCities(event){
   let city = gettingInput.value; // Get the city name from user input
   let apiKey = "537o90e3d0b69f65872t8af09d46def0";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-  
-  updateTimeAndDay();
+  dateAndTimeFormat();
+
   axios.get(apiUrl).then(getWeatherDetails);
-   
-
-
+  
   let cities = document.querySelector("#mainCity");
   cities.innerHTML = city.toUpperCase();
 }
@@ -42,21 +47,12 @@ searchForm.addEventListener("submit", changingCities);
 
 
 function getWeatherDetails(response){
-  
-  
+
   let temperature = Math.round(response.data.temperature.current);
   let humidity = response.data.temperature.humidity;
   let windSpeed = response.data.wind.speed;
   let weatherDescription = response.data.condition.description;
   let weatherIcon = response.data.condition.icon_url;
-
-
-  let currentDate = new Date();
-  let cityTimeZoneOffset = response.data.timezone_offset; // Time zone offset in seconds
-  let cityLocalTime = new Date(currentDate.getTime() + cityTimeZoneOffset * 1000);
-
-  let timeForCityElement = document.querySelector("#time-for-city");
-  timeForCityElement.innerHTML = `Local Time: ${cityLocalTime.toLocaleTimeString()}`;
 
   let temperatureElement = document.querySelector("#main-temp");
   temperatureElement.innerHTML = `${temperature}°C`;
@@ -108,8 +104,7 @@ function showPosition(position){
     weatherDescriptionElement.innerHTML = `Weather: ${weatherDescription}`;
 
     let weatherIconElement = document.querySelector("#weather-icon");
-    weatherIconElement.src = weatherIcon;//for changing the srcc link of the icon
-    updateTimeAndDay();
+    weatherIconElement.src = weatherIcon;//for changing the src link of the icon
     })
 
 }
