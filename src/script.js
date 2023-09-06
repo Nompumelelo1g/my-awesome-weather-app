@@ -143,3 +143,29 @@ function displayingCelsiusTemperature(event) {
 }
 let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", displayingCelsiusTemperature);
+
+function displayingForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let days = ["Thu", "Fri", "Sat", "Sun"];
+
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class="col-2">
+        <div class="forecast-day">${day}</div>
+        <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png" alt="rainy-day" id="weather-icon"/>
+        <div class="forecast-temperature">
+          <span class="forecast-temperature-max"> 18° </span>
+          <span class="forecast-temperature-min"> 12° </span>
+        </div>
+      </div>
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+displayingForecast();
